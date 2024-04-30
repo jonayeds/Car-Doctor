@@ -1,8 +1,13 @@
+import About from "../componenets/About";
+import Banner from "../componenets/Banner";
+import Services from "../componenets/Services";
 
 const Home = () => {
     return (
         <div className="">
-            <h1>home</h1>
+            <Banner></Banner>
+            <About></About>
+            <Services></Services>
         </div>
     );
 };
