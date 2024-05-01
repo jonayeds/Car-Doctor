@@ -1,8 +1,25 @@
+import { useContext } from 'react';
 import login from '../assets/images/login/login.svg'
+import { FaFacebookF } from "react-icons/fa";
+import { FaLinkedinIn } from "react-icons/fa";
+import { FaGoogle } from "react-icons/fa";
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../providers/AuthProvider';
 const Login = () => {
+  const {logIn} = useContext(AuthContext)
     const handleLogin =(e)=>{
         e.preventDefault()
-        
+        const form = e.target
+        const email = form.email.value
+        const password = form.password.value
+        logIn(email, password)
+        .then(result =>{
+          console.log(result.user)
+        })
+        .catch(err=>{
+          console.log(err.message)
+        })
+
     }
     return (
         <div>
@@ -35,6 +52,12 @@ const Login = () => {
       </form>
           <div className="text-center">
             <p>Or sign in with</p>
+            <div className='flex justify-center gap-3 mt-4 text-2xl items-center'>
+              <button className='bg-gray-200 p-3 rounded-full hover:text-red-500 '><FaFacebookF /></button>
+              <button className='bg-gray-200 p-3 rounded-full hover:text-red-500'><FaLinkedinIn /></button>
+              <button className='bg-gray-200 hover:text-red-500 p-3 rounded-full'><FaGoogle /></button>
+            </div>
+            <p className='mt-4'>Don`t have an account? <Link to={'/signUp'} className='text-red-500 font-semibold'>Sign Up</Link></p>
           </div>
     </div>
   </div>
